@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-
+const authRoutes = require("./routes/auth");
 const env = require("dotenv");
 const app = express();
 
@@ -20,7 +20,8 @@ mongoose
     console.log("Database connected");
   });
 
-// app.use(bodyParser());
+app.use(bodyParser());
+app.use("/api/v1", authRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
