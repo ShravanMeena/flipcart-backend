@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/auth");
+const authAdminRoutes = require("./routes/admin/auth");
 const env = require("dotenv");
 const app = express();
 
@@ -14,6 +15,7 @@ mongoose
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useCreateIndex: true,
     }
   )
   .then(() => {
@@ -22,6 +24,7 @@ mongoose
 
 app.use(bodyParser());
 app.use("/api/v1", authRoutes);
+app.use("/api/v1", authAdminRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
