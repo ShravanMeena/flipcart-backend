@@ -22,7 +22,7 @@ mongoose
     console.log("Database connected");
   });
 
-app.use(bodyParser());
+app.use(express.json());
 app.use("/api/v1", authRoutes);
 app.use("/api/v1", authAdminRoutes);
 
