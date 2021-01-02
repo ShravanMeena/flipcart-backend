@@ -22,7 +22,7 @@ const authSchema = new mongoose.Schema(
       required: true,
       unique: true,
       lowercase: true,
-      indexe: true,
+      index: true,
     },
     email: {
       type: String,

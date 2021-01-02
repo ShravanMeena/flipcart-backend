@@ -43,9 +43,13 @@ exports.signin = (req, res) => {
     }
     if (user) {
       if (user.authenticate(req.body.password) && user.role === "admin") {
-        const token = jwt.sign({ _id: user._id }, process.env.SECRET_KEY, {
-          expiresIn: "24h",
-        });
+        const token = jwt.sign(
+          { _id: user._id, role: user.role },
+          process.env.SECRET_KEY,
+          {
+            expiresIn: "24h",
+          }
+        );
         const {
           _id,
           firstName,
