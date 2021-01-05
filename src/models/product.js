@@ -13,11 +13,16 @@ const productSchema = new mongoose.Schema(
       unique: true,
     },
     nsp: {
-      type: String,
+      type: Number,
       required: true,
     },
-    msp: {
-      type: String,
+    mrp: {
+      type: Number,
+      required: true,
+    },
+
+    quantity: {
+      type: Number,
       required: true,
     },
 
@@ -38,8 +43,16 @@ const productSchema = new mongoose.Schema(
         type: String,
       },
     ],
-    category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
-    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+      required: true,
+    },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      require: true,
+    },
     updateAt: Date,
   },
   { timestamps: true }
