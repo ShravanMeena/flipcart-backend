@@ -5,6 +5,7 @@ const authRoutes = require("./routes/auth");
 const authAdminRoutes = require("./routes/admin/auth");
 const categoryRoutes = require("./routes/category");
 const productRoutes = require("./routes/products");
+const cartRoutes = require("./routes/cart");
 const env = require("dotenv");
 const app = express();
 
@@ -18,6 +19,7 @@ mongoose
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
+      useFindAndModify: false,
     }
   )
   .then(() => {
@@ -35,6 +37,7 @@ app.use("/api/v1", authRoutes);
 app.use("/api/v1", authAdminRoutes);
 app.use("/api/v1", categoryRoutes);
 app.use("/api/v1", productRoutes);
+app.use("/api/v1", cartRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
